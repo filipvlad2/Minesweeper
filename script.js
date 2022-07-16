@@ -4,7 +4,6 @@ let cellArray = [];
 let cellsCount = 0;
 
 let flags = 0;
-//let placedFlags = 0;
 
 let bombs = 20;
 let bombsArray = [];
