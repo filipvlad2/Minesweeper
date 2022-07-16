@@ -97,7 +97,6 @@ function generateRandomBombs() {
 	for (let i = 0; i < randomBombs.length; i++) {
 		document.getElementById(randomBombs[i]).className = "bomb";
 		bombsArray.push(randomBombs[i]);
-		document.getElementById(randomBombs[i]).style.backgroundColor = "red";
 	}
 }
 
