@@ -129,35 +129,26 @@ function establishNeighbours() {
 		let total = 0;
 		let isLeftEdge = (i % width === 0);
 		let isRightEdge = (i % width === width - 1);
-
+		
 		if (document.getElementById(cellArray[i]).className === "empty") {
-			if (i > 0 && !isLeftEdge && document.getElementById(cellArray[i - 1]).className === "bomb") {
+			if (!isLeftEdge && ((i > 0 && document.getElementById(cellArray[i - 1]).className === "bomb") || 
+								(i > 11 && document.getElementById(cellArray[i - 1 - width]).className === "bomb") || 
+								(i < 90 && document.getElementById(cellArray[i - 1 + width]).className === "bomb"))) {
 				total++;
 			}
-			if (i > 9 && !isRightEdge && document.getElementById(cellArray[i + 1 - width]).className === "bomb") {
+			if (!isRightEdge && ((i > 9 && document.getElementById(cellArray[i + 1 - width]).className === "bomb") || 
+								(i < 98 && document.getElementById(cellArray[i + 1]).className === "bomb") || 
+								(i < 88 && document.getElementById(cellArray[i + 1 + width]).className === "bomb"))) {
 				total++;
 			}
-			if (i > 10 && document.getElementById(cellArray[i - width]).className === "bomb") {
-				total++;
-			}
-			if (i > 11 && !isLeftEdge && document.getElementById(cellArray[i - 1 - width]).className === "bomb") {
-				total++;
-			}
-			if (i < 98 && !isRightEdge && document.getElementById(cellArray[i + 1]).className === "bomb") {
-				total++;
-			}
-			if (i < 90 && !isLeftEdge && document.getElementById(cellArray[i - 1 + width]).className === "bomb") {
-				total++;
-			}
-			if (i < 88 && !isRightEdge && document.getElementById(cellArray[i + 1 + width]).className === "bomb") {
-				total++;
-			}
-			if (i < 89 && document.getElementById(cellArray[i + width]).className === "bomb") {
+			if ((i > 10 && document.getElementById(cellArray[i - width]).className === "bomb") || 
+				(i < 89 && document.getElementById(cellArray[i + width]).className === "bomb")) {
 				total++;
 			}
 
 			document.getElementById(cellArray[i]).setAttribute('data', total);
 		}
+		
 	}
 }
 
