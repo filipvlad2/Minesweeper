@@ -158,14 +158,7 @@ function neighboursCheck(i) {
 	let isLeftEdge = (i % width === 0);
 	let isRightEdge = (i % width === width - 1);
 
-	let instancesArray = [(i - 1),
-						(i + 1),
-						(i - 1 - width),
-						(i - 1 + width),
-						(i + 1 - width),
-						(i + 1 + width),
-						(i + width),
-						(i - width)];
+	let instancesArray = [(i - 1), (i + 1), (i - 1 - width), (i - 1 + width), (i + 1 - width), (i + 1 + width), (i + width), (i - width)];
 
 	if (!isLeftEdge) {
 		if (i > 0) {
