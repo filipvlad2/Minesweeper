@@ -24,24 +24,24 @@ function startGame() {
 
 //Creates the game board
 function createGameTable() {
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 10; ++i) {
 		let tableRow = document.createElement("tr");
 		tableRow.id = "row" + i;
 
 		gameTable.appendChild(tableRow);
 		let row = document.getElementById("row" + i);
 
-		for (let j = 0; j < 10; j++) {
+		for (let j = 0; j < 10; ++j) {
 			let tableCell = document.createElement("td");
 			tableCell.id = cellsCount;
 			tableCell.className = "empty";
-			cellsCount++;
+			++cellsCount;
 			cellArray.push(tableCell.id);
 			row.appendChild(tableCell);
 		}
 	}
 
-	for (let i = 0; i < cellArray.length; i++) {
+	for (let i = 0; i < cellArray.length; ++i) {
 
 		document.getElementById(cellArray[i]).addEventListener('click', function(e) {
 			onClick(i);
@@ -81,7 +81,7 @@ function onClick(i) {
 //Generates the bombs
 function generateRandomBombs() {
 	let randomBombs = [];
-	for (let i = 0; i < bombs; i++) {
+	for (let i = 0; i < bombs; ++i) {
 		randomize();
 	}
 
@@ -94,7 +94,7 @@ function generateRandomBombs() {
 		}
 	}
 
-	for (let i = 0; i < randomBombs.length; i++) {
+	for (let i = 0; i < randomBombs.length; ++i) {
 		document.getElementById(randomBombs[i]).className = "bomb";
 		bombsArray.push(randomBombs[i]);
 	}
@@ -112,19 +112,19 @@ function addFlag(i) {
 		if (document.getElementById(cellArray[i]).className != "flag") {
 			document.getElementById(cellArray[i]).className = "flag";
 			document.getElementById(cellArray[i]).append("🚩");
-			flags++;
+			++flags;
 			winGame(i);
 		} else {
 			document.getElementById(cellArray[i]).classList.remove("flag");
 			document.getElementById(cellArray[i]).append("");
-			flags--;
+			--flags;
 		}
 	}
 }
 
 //Establish the neighbours placement
 function establishNeighbours() {
-	for (let i = 0; i < cellArray.length; i++) {
+	for (let i = 0; i < cellArray.length; ++i) {
 
 		let total = 0;
 		let isLeftEdge = (i % width === 0);
@@ -134,16 +134,16 @@ function establishNeighbours() {
 			if (!isLeftEdge && ((i > 0 && document.getElementById(cellArray[i - 1]).className === "bomb") || 
 								(i > 11 && document.getElementById(cellArray[i - 1 - width]).className === "bomb") || 
 								(i < 90 && document.getElementById(cellArray[i - 1 + width]).className === "bomb"))) {
-				total++;
+				++total;
 			}
 			if (!isRightEdge && ((i > 9 && document.getElementById(cellArray[i + 1 - width]).className === "bomb") || 
 								(i < 98 && document.getElementById(cellArray[i + 1]).className === "bomb") || 
 								(i < 88 && document.getElementById(cellArray[i + 1 + width]).className === "bomb"))) {
-				total++;
+				++total;
 			}
 			if ((i > 10 && document.getElementById(cellArray[i - width]).className === "bomb") || 
 				(i < 89 && document.getElementById(cellArray[i + width]).className === "bomb")) {
-				total++;
+				++total;
 			}
 
 			document.getElementById(cellArray[i]).setAttribute('data', total);
@@ -204,7 +204,7 @@ function gameOver(i) {
 
 	document.getElementById("restart").style.display = "block";
 
-	for (let i = 0; i < bombsArray.length; i++) {
+	for (let i = 0; i < bombsArray.length; ++i) {
 		document.getElementById(cellArray[bombsArray[i]]).append("💣");
 	}
 }
@@ -213,10 +213,10 @@ function gameOver(i) {
 function winGame(i) {
 	let placedFlags = 0;
 
-	for (let i = 0; i < cellArray.length; i++) {
+	for (let i = 0; i < cellArray.length; ++i) {
 		if (document.getElementById(cellArray[i]).className === "flag") {
 			if (bombsArray.indexOf(cellArray[i]) != -1) {
-				placedFlags++;
+				++placedFlags;
 			}
 		}
 	}
