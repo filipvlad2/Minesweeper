@@ -158,45 +158,43 @@ function neighboursCheck(i) {
 	let isLeftEdge = (i % width === 0);
 	let isRightEdge = (i % width === width - 1);
 
-	if (i > 0 && !isLeftEdge) {
-		let newId = i - 1;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
+	let instancesArray = [ 	(i - 1),
+							(i + 1),
+							(i - 1 - width),
+							(i - 1 + width),
+							(i + 1 - width),
+							(i + 1 + width),
+							(i + width),
+							(i - width) 
+											];
+
+	if (!isLeftEdge) {
+		if (i > 0) {
+			onClick(instancesArray[0]);
+		}
+		if (i > 11) {
+			onClick(instancesArray[2]);
+		}
+		if (i < 90) {
+			onClick(instancesArray[3]);
+		}
 	}
-	if (i > 9 && !isRightEdge) {
-		let newId = i + 1 - width;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
+	if (!isRightEdge) {
+		if (i > 9) {
+			onClick(instancesArray[4]);
+		}
+		if (i < 98) {
+			onClick(instancesArray[1]);
+		}
+		if (i < 88) {
+			onClick(instancesArray[5]);
+		}
 	}
 	if (i > 10) {
-		let newId = i - width;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
-	}
-	if (i > 11 && !isLeftEdge) {
-		let newId = i - 1 - width;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
-	}
-	if (i < 98 && !isRightEdge) {
-		let newId = i + 1;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
-	}
-	if (i < 90 && !isLeftEdge) {
-		let newId = i - 1 + width;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
-	}
-	if (i < 88 && !isRightEdge) {
-		let newId = i + 1 + width;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
+		onClick(instancesArray[7]);
 	}
 	if (i < 89) {
-		let newId = i + width;
-		let newCell = document.getElementById(newId);
-		onClick(newId);
+		onClick(instancesArray[6]);
 	}
 }
 
